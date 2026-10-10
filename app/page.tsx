@@ -105,7 +105,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="seu@email.com"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-900 rounded-lg outline-none text-gray-900 focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
                 />
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function LoginPage() {
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
                     placeholder="Digite sua senha"
-                    className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg outline-none focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
+                    className="w-full pl-12 pr-12 py-3 border border-gray-900 rounded-lg outline-none text-gray-900 focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
                   />
 
                   <button
