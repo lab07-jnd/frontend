@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -31,20 +30,20 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f8f9ff] flex items-center justify-center p-4">
-      <div className="w-full max-w-5xl min-h-[550px] bg-white rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2">
+    <main className="min-h-screen bg-bg-app flex items-center justify-center p-4">
+      <div className="w-full max-w-5xl min-h-[550px] bg-surface-card rounded-2xl shadow-card border border-border-subtle overflow-hidden grid md:grid-cols-2">
 
-        {/* LADO ESQUERDO */}
-        <section className="hidden md:flex bg-[#00375E] text-white p-12 flex-col justify-between">
+        {/* LADO ESQUERDO - PAINEL INSTITUCIONAL */}
+        <section className="hidden md:flex bg-sidebar text-white p-12 flex-col justify-between">
           <div className="flex items-center gap-3">
-            <ShieldCheck size={32} />
-            <h1 className="text-2xl font-bold">Gestão de Empresas</h1>
+            <ShieldCheck size={32} className="text-brand-primary-light" />
+            <h1 className="text-2xl font-bold">PontoFlow</h1>
           </div>
 
           <div className="animate-[fadeIn_0.8s_ease-out]">
             <UsersRound
               size={65}
-              className="mb-8 text-blue-200"
+              className="mb-8 text-brand-primary-light"
             />
 
             <h2 className="text-4xl font-bold leading-tight">
@@ -53,28 +52,28 @@ export default function LoginPage() {
               simplificada.
             </h2>
 
-            <p className="mt-5 text-blue-100 text-sm leading-7">
-              Organize sua equipa, acompanhe processos
+            <p className="mt-5 text-gray-200 text-sm leading-7">
+              Organize sua equipe, acompanhe registros de ponto
               e tenha todas as informações num só lugar.
             </p>
           </div>
 
-          <p className="text-xs text-blue-200">
-            © Gestão De Empresas. Todos os direitos reservados.
+          <p className="text-xs text-gray-300">
+            © PontoFlow. Todos os direitos reservados.
           </p>
         </section>
 
-        {/* LADO DIREITO */}
+        {/* LADO DIREITO - FORMULÁRIO */}
         <section className="flex flex-col justify-center px-7 py-12 sm:px-12">
 
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-[#00375E]">
+            <h2 className="text-3xl font-bold text-text-primary">
               {esqueceuSenha
                 ? "Recuperar senha"
                 : "Bem-vindo de volta!"}
             </h2>
 
-            <p className="text-gray-500 mt-3 text-sm">
+            <p className="text-text-secondary mt-3 text-sm">
               {esqueceuSenha
                 ? "Informe o seu e-mail para recuperar o acesso."
                 : "Entre com suas credenciais para continuar."}
@@ -87,7 +86,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-[#00375E] mb-2"
+                className="block text-sm font-medium text-text-primary mb-2"
               >
                 E-mail
               </label>
@@ -95,7 +94,7 @@ export default function LoginPage() {
               <div className="relative">
                 <Mail
                   size={19}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary"
                 />
 
                 <input
@@ -105,7 +104,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="seu@email.com"
-                  className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg outline-none focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
+                  className="w-full pl-12 pr-4 py-3 border border-border-subtle bg-surface-card text-text-primary rounded-lg outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary-light transition-all"
                 />
               </div>
             </div>
@@ -115,7 +114,7 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="senha"
-                  className="block text-sm font-medium text-[#00375E] mb-2"
+                  className="block text-sm font-medium text-text-primary mb-2"
                 >
                   Senha
                 </label>
@@ -123,7 +122,7 @@ export default function LoginPage() {
                 <div className="relative">
                   <Lock
                     size={19}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary"
                   />
 
                   <input
@@ -133,14 +132,14 @@ export default function LoginPage() {
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
                     placeholder="Digite sua senha"
-                    className="w-full pl-12 pr-12 py-3 border border-gray-200 rounded-lg outline-none focus:border-[#00375E] focus:ring-2 focus:ring-blue-100 transition-all"
+                    className="w-full pl-12 pr-12 py-3 border border-border-subtle bg-surface-card text-text-primary rounded-lg outline-none focus:border-brand-primary focus:ring-2 focus:ring-brand-primary-light transition-all"
                   />
 
                   <button
                     type="button"
                     aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
                     onClick={() => setMostrarSenha(!mostrarSenha)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#00375E] cursor-pointer"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary cursor-pointer"
                   >
                     {mostrarSenha
                       ? <EyeOff size={19} />
@@ -152,15 +151,15 @@ export default function LoginPage() {
 
             {!esqueceuSenha && (
               <div className="flex items-center justify-between gap-2">
-                <label className="flex items-center gap-2 text-sm text-gray-500">
-                  <input type="checkbox" className="accent-[#00375E]" />
+                <label className="flex items-center gap-2 text-sm text-text-secondary">
+                  <input type="checkbox" className="accent-sidebar" />
                   Lembrar-me
                 </label>
 
                 <button
                   type="button"
                   onClick={() => setEsqueceuSenha(true)}
-                  className="text-sm text-[#00375E] hover:underline cursor-pointer"
+                  className="text-sm text-sidebar hover:underline cursor-pointer"
                 >
                   Esqueceu sua senha?
                 </button>
@@ -169,7 +168,7 @@ export default function LoginPage() {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-[#00375E] text-white py-3 rounded-lg font-semibold hover:bg-[#005184] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-sidebar text-white py-3 rounded-lg font-semibold hover:bg-sidebar-hover hover:-translate-y-0.5 hover:shadow-card transition-all duration-300 cursor-pointer"
             >
               {esqueceuSenha ? "Recuperar senha" : "Entrar"}
               <ArrowRight size={18} />
@@ -179,15 +178,15 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setEsqueceuSenha(false)}
-                className="w-full text-sm text-[#00375E] hover:underline cursor-pointer"
+                className="w-full text-sm text-sidebar hover:underline cursor-pointer mt-2"
               >
                 Voltar ao login
               </button>
             )}
           </form>
 
-          <p className="mt-10 text-center text-xs text-gray-400">
-            Acesso seguro • Painel de Gestão de Empresas • Todos os direitos reservados
+          <p className="mt-10 text-center text-xs text-text-secondary">
+            Acesso seguro • Painel PontoFlow • Todos os direitos reservados
           </p>
         </section>
       </div>
