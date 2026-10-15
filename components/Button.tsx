@@ -28,6 +28,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 export function Button({
+  
   variant = "primary",
   size = "md",
   children,
