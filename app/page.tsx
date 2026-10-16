@@ -9,6 +9,7 @@ import {
   ArrowRight,
   ShieldCheck,
   UsersRound,
+  LoaderCircle,
 } from "lucide-react";
 
 export default function LoginPage() {
@@ -16,6 +17,7 @@ export default function LoginPage() {
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [esqueceuSenha, setEsqueceuSenha] = useState(false);
+  const [loadingRegister, setLoadingRegister] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,7 +34,6 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen bg-bg-app flex items-center justify-center p-4">
       <div className="w-full max-w-5xl min-h-[550px] bg-surface-card rounded-2xl shadow-card border border-border-subtle overflow-hidden grid md:grid-cols-2">
-
         {/* LADO ESQUERDO - PAINEL INSTITUCIONAL */}
         <section className="hidden md:flex bg-sidebar text-white p-12 flex-col justify-between">
           <div className="flex items-center gap-3">
@@ -41,10 +42,7 @@ export default function LoginPage() {
           </div>
 
           <div className="animate-[fadeIn_0.8s_ease-out]">
-            <UsersRound
-              size={65}
-              className="mb-8 text-brand-primary-light"
-            />
+            <UsersRound size={65} className="mb-8 text-brand-primary-light" />
 
             <h2 className="text-4xl font-bold leading-tight">
               Gestão de pessoas,
@@ -53,8 +51,8 @@ export default function LoginPage() {
             </h2>
 
             <p className="mt-5 text-gray-200 text-sm leading-7">
-              Organize sua equipe, acompanhe registros de ponto
-              e tenha todas as informações num só lugar.
+              Organize sua equipe, acompanhe registros de ponto e tenha todas as
+              informações num só lugar.
             </p>
           </div>
 
@@ -65,12 +63,9 @@ export default function LoginPage() {
 
         {/* LADO DIREITO - FORMULÁRIO */}
         <section className="flex flex-col justify-center px-7 py-12 sm:px-12">
-
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-text-primary">
-              {esqueceuSenha
-                ? "Recuperar senha"
-                : "Bem-vindo de volta!"}
+              {esqueceuSenha ? "Recuperar senha" : "Bem-vindo de volta!"}
             </h2>
 
             <p className="text-text-secondary mt-3 text-sm">
@@ -81,7 +76,6 @@ export default function LoginPage() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-
             {/* EMAIL */}
             <div>
               <label
@@ -137,13 +131,13 @@ export default function LoginPage() {
 
                   <button
                     type="button"
-                    aria-label={mostrarSenha ? "Ocultar senha" : "Mostrar senha"}
+                    aria-label={
+                      mostrarSenha ? "Ocultar senha" : "Mostrar senha"
+                    }
                     onClick={() => setMostrarSenha(!mostrarSenha)}
                     className="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary cursor-pointer"
                   >
-                    {mostrarSenha
-                      ? <EyeOff size={19} />
-                      : <Eye size={19} />}
+                    {mostrarSenha ? <EyeOff size={19} /> : <Eye size={19} />}
                   </button>
                 </div>
               </div>
@@ -166,13 +160,44 @@ export default function LoginPage() {
               </div>
             )}
 
-            <button
-              type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-sidebar text-white py-3 rounded-lg font-semibold hover:bg-sidebar-hover hover:-translate-y-0.5 hover:shadow-card transition-all duration-300 cursor-pointer"
-            >
-              {esqueceuSenha ? "Recuperar senha" : "Entrar"}
-              <ArrowRight size={18} />
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              {/* BOTÃO ENTRAR */}
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 bg-sidebar text-white py-3 rounded-lg font-semibold hover:bg-sidebar-hover hover:-translate-y-0.5 hover:shadow-card transition-all duration-300 cursor-pointer"
+              >
+                {esqueceuSenha ? "Recuperar senha" : "Entrar"}
+                <ArrowRight size={18} />
+              </button>
+
+              {/* BOTÃO CRIAR CONTA */}
+              {!esqueceuSenha && (
+                <button
+                  type="button"
+                  disabled={loadingRegister}
+                  onClick={() => {
+                    setLoadingRegister(true);
+                    window.location.href = "/register";
+                  }}
+                  className="w-full flex items-center justify-center gap-2 bg-sidebar text-white py-3 rounded-lg font-semibold hover:bg-sidebar-hover hover:-translate-y-0.5 hover:shadow-card transition-all duration-300 cursor-pointer disabled:cursor-wait"
+                >
+                  {loadingRegister ? (
+                    <>
+                      <LoaderCircle
+                        size={20}
+                        className="animate-spin text-blue-300"
+                      />
+                      <span>A abrir...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Crie sua conta</span>
+                      <UsersRound size={18} />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
 
             {esqueceuSenha && (
               <button
