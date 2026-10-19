@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { authApi } from "@/services/authApi";
 import {
   Eye,
   EyeOff,
@@ -19,7 +20,7 @@ export default function LoginPage() {
   const [esqueceuSenha, setEsqueceuSenha] = useState(false);
   const [loadingRegister, setLoadingRegister] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (esqueceuSenha) {
@@ -27,8 +28,24 @@ export default function LoginPage() {
       return;
     }
 
-    console.log("Login:", { email });
-    alert("Login pronto para integração com a API!");
+    try {
+      const response = await authApi.post<{ token: string }>("/auth/signIn", {
+        email: email,
+        password: senha,
+      });
+
+      const token = response.data.token;
+
+      if (!token) {
+        throw new Error("Token JWT não recebido.");
+      }
+
+      console.log("Login realizado com sucesso!");
+      alert("Login realizado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      alert("Não foi possível iniciar sessão.");
+    }
   }
 
   return (
