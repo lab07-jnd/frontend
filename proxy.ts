@@ -12,13 +12,13 @@ function expirado(token: string) {
   }
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const token = req.cookies.get(COOKIE)?.value;
   const logado = !!token && !expirado(token);
-  const noLogin = req.nextUrl.pathname === "/login";
+  const publica = ["/login", "/register"].includes(req.nextUrl.pathname);
 
-  if (!logado && !noLogin) return NextResponse.redirect(new URL("/login", req.url));
-  if (logado && noLogin) return NextResponse.redirect(new URL("/collaborators", req.url));
+  if (!logado && !publica) return NextResponse.redirect(new URL("/login", req.url));
+  if (logado && publica) return NextResponse.redirect(new URL("/collaborators", req.url));
   return NextResponse.next();
 }
 
