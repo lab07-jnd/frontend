@@ -1,8 +1,8 @@
 "use client";
 
-import { Badge } from "@/components/Badge";
-import { Button } from "@/components/Button";
-import { Input } from "@/components/Input";
+import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import {
   Card,
   CardHeader,
@@ -10,7 +10,7 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/Card";
+} from "@/components/ui/Card";
 import { Mail, Clock, CheckCircle2 } from "lucide-react";
 
 export default function DesignSystemShowcase() {
@@ -62,17 +62,24 @@ export default function DesignSystemShowcase() {
           <CardDescription>Exemplo de campos com ícones e estados de validação.</CardDescription>
         </CardHeader>
         <CardContent className="grid md:grid-cols-2 gap-4">
-          <Input
-            label="E-mail do Colaborador"
-            placeholder="colaborador@empresa.com"
-            leftIcon={<Mail size={18} />}
-          />
-          <Input
-            label="Horário de Entrada"
-            placeholder="08:00"
-            leftIcon={<Clock size={18} />}
-            error="Horário fora do limite permitido"
-          />
+          <label className="flex flex-col gap-1 text-sm font-semibold">
+            E-mail do Colaborador
+            <Input
+              placeholder="colaborador@empresa.com"
+              icon={<Mail size={18} />}
+            />
+          </label>
+          <label className="flex flex-col gap-1 text-sm font-semibold">
+            Horário de Entrada
+            <Input
+              placeholder="08:00"
+              icon={<Clock size={18} />}
+              className="ring-1 ring-red-500"
+            />
+            <span className="text-xs font-normal text-red-500">
+              Horário fora do limite permitido
+            </span>
+          </label>
         </CardContent>
         <CardFooter>
           <Button variant="outline">Limpar</Button>
