@@ -23,7 +23,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <div id="app-root">{children}</div>
       </body>
     </html>
   );
