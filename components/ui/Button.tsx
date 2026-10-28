@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
-import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { cn } from "@/app/lib/utils";
 
 export type ButtonVariant = "primary" | "secondary" | "outline" | "danger";
 export type ButtonSize = "sm" | "md" | "lg";
@@ -49,5 +52,22 @@ export function Button({
     >
       {children}
     </button>
+  );
+}
+
+
+export function LogoutButton() {
+  const router = useRouter();
+
+  function exit() {
+    localStorage.removeItem("TOKEN_APLICACAO_FRONTEND");
+    document.cookie = "TOKEN_APLICACAO_FRONTEND=; path=/; max-age=0";
+    router.push("/login");
+  }
+
+  return (
+    <Button variant="outline" size="sm" onClick={exit}>
+      Sair
+    </Button>
   );
 }
